@@ -5,8 +5,6 @@ const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
   : { cartItems: [] };
 
-
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -21,13 +19,11 @@ const cartSlice = createSlice({
       } else {
         state.cartItems = [...state.cartItems, item];
       }
-      
+
       return updateCart(state);
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter(
-        (x) => x._id !== action.payload
-      );
+      state.cartItems = state.cartItems.filter((x) => x._id !== action.payload);
       // localStorage.setItem("cart", JSON.stringify(state));
 
       return updateCart(state);
