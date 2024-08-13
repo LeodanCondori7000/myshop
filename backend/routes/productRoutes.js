@@ -3,20 +3,19 @@ const router = express.Router();
 import {
   getProducts,
   getProductById,
-  // createProduct,
+  createProduct,
   // updateProduct,
   // deleteProduct,
   // createProductReview,
   // getTopProducts,
 } from "../controllers/productController.js";
 
-// import { protect, admin } from '../middleware/authMiddleware.js';
-// import checkObjectId from '../middleware/checkObjectId.js';
+import { protect, admin } from '../middlewares/authMiddleware.js';
+// import checkObjectId from '../middlewares/checkObjectId.js';
 
-router.route("/").get(getProducts);
+router.route('/').get(getProducts).post(protect, admin, createProduct);
 router.route("/:id").get(getProductById);
 
-// router.route('/').get(getProducts).post(protect, admin, createProduct);
 // router.route('/:id/reviews').post(protect, checkObjectId, createProductReview);
 // router.get('/top', getTopProducts);
 // router
