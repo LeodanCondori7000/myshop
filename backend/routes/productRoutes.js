@@ -6,7 +6,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-  // createProductReview,
+  createProductReview,
   // getTopProducts,
 } from "../controllers/productController.js";
 
@@ -20,7 +20,9 @@ router
   .put(protect, admin, updateProduct)
   .delete(protect, admin, deleteProduct);
 
-// router.route('/:id/reviews').post(protect, checkObjectId, createProductReview);
+router
+  .route("/:id/reviews")
+  .post(protect, /*checkObjectId,*/ createProductReview);
 // router.get('/top', getTopProducts);
 // router
 //   .route('/:id')
