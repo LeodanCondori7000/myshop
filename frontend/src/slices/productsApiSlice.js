@@ -5,13 +5,15 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
       // query: ({ keyword, pageNumber }) => ({
-      query: () => ({
+      query: ({ pageNumber }) => ({
         url: PRODUCTS_URL,
         // params: { keyword, pageNumber },
+        params: { pageNumber },
         // url: `${PRODUCTS_URL}?keyword=${keyword}&pageNumber=${pageNumber}`,
       }),
       keepUnusedDataFor: 5,
-      providesTags: ["Products"],
+      providesTags: ["Product"],
+      // providesTags: ["Products"],
     }),
     getProductDetails: builder.query({
       query: (productId) => ({
@@ -69,5 +71,5 @@ export const {
   useUpdateProductMutation,
   useUploadProductImageMutation,
   useDeleteProductMutation,
-  useCreateReviewMutation
+  useCreateReviewMutation,
 } = productsApiSlice;
