@@ -5,7 +5,7 @@ import { FaTrash, FaEdit, FaCheck, FaTimes } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import {
-  // useDeleteUserMutation,
+  useDeleteUserMutation,
   useGetUsersQuery,
 } from "../../slices/usersApiSlice";
 import { toast } from "react-toastify";
@@ -14,24 +14,24 @@ import { Link } from "react-router-dom";
 const UserListScreen = () => {
   const { data: users, refetch, isLoading, error } = useGetUsersQuery();
 
-  // const [deleteUser] = useDeleteUserMutation();
+  const [deleteUser, { isLoading: loadingDelete }] = useDeleteUserMutation();
 
   const deleteHandler = async (id) => {
-    // if (window.confirm('Are you sure you want to delete this user?')) {
-    //   try {
-    //     await deleteUser(id).unwrap();
-    //     toast.success('User deleted successfully');
-    //     refetch();
-    //   } catch (err) {
-    //     toast.error(err?.data?.message || err.error);
-    //   }
-    // }
-    console.log("delete");
+    if (window.confirm('Are you sure you want to delete this user?')) {
+      try {
+        await deleteUser(id).unwrap();
+        toast.success('User deleted successfully');
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
   };
 
   return (
     <>
       <h1>Users</h1>
+      {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
