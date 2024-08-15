@@ -94,7 +94,7 @@ const ProductEditScreen = () => {
       </Link>
       <FormContainer>
         <h1>Edit Product</h1>
-        {loadingUpdate && <Loader />}
+
         {isLoading ? (
           <Loader />
         ) : error ? (
