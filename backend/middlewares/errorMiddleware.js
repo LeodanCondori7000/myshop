@@ -11,16 +11,16 @@ const errorHandler = (err, req, res, next) => {
   // NOTE: checking for invalid ObjectId moved to it's own middleware
   // See README for further info.
 
-  // Check for Mongoose bad ObjectId
-  if (err.name === 'CastError' && err.kind === 'ObjectId') {
-    statusCode = 404;
-    message = 'Resource not found';
-  }
+  // // Check for Mongoose bad ObjectId
+  // if (err.name === 'CastError' && err.kind === 'ObjectId') {
+  //   statusCode = 404;
+  //   message = 'Resource not found';
+  // }
 
   res.status(statusCode).json({
     message: message,
     // stack: process.env.NODE_ENV === 'production' ? null : err.stack,
-    stack: process.env.NODE_ENV === 'production' ? "🥮" : err.stack,
+    stack: process.env.NODE_ENV === "production" ? "🥮" : err.stack,
   });
 };
 
