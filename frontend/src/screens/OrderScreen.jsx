@@ -63,7 +63,7 @@ const OrderScreen = () => {
       .capture()
       .then(async function (details) {
         try {
-          await payOrder({ orderId, details });
+          await payOrder({ orderId, details }).unwrap();
           refetch();
           toast.success("Order is paid");
         } catch (err) {
